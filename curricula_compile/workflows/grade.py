@@ -17,10 +17,10 @@ class GradeWorkflow(Workflow):
         if not result["grading"].compiled and not result["solution"].compiled:
             return
 
-        from curricula_grade import run
+        from curricula_grade.run import run
         from curricula_grade.models import GradingAssignment
-        from curricula_grade.tools.format import format_report_markdown
-        from curricula_grade.tools.diagnostics import get_diagnostics
+        # from curricula_grade.tools.format import format_report_markdown
+        from curricula_grade.tools.diagnose import diagnose
 
         grading_path = self.configuration.artifacts_path.joinpath(Paths.GRADING)
         solution_path = self.configuration.artifacts_path.joinpath(Paths.SOLUTION)
@@ -33,10 +33,11 @@ class GradeWorkflow(Workflow):
         with report_path.open("w") as file:
             json.dump(report.dump(), file, indent=2)
 
-        with formatted_report_path.open("w") as file:
-            file.write(format_report_markdown(
-                assignment=assignment,
-                report_path=report_path,
-                options=self.configuration.options))
 
-        get_diagnostics(assignment, report_path)
+        # with formatted_report_path.open("w") as file:
+        #     file.write(format_report_markdown(
+        #         assignment=assignment,
+        #         report_path=report_path,
+        #         options=self.configuration.options))
+
+        diagnose(assignment, report_path)

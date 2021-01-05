@@ -8,7 +8,8 @@ root = Path(__file__).absolute().parent
 with root.joinpath("README.md").open() as fh:
     long_description = fh.read()
 
-spec = importlib.util.spec_from_file_location("curricula_compile", str(root.joinpath("curricula_compile")))
+name = "curricula_compile"
+spec = importlib.util.spec_from_file_location(name, str(root.joinpath(name, "__init__.py")))
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 
