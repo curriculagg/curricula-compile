@@ -33,11 +33,10 @@ class GradeWorkflow(Workflow):
         with report_path.open("w") as file:
             json.dump(report.dump(), file, indent=2)
 
-
         # with formatted_report_path.open("w") as file:
         #     file.write(format_report_markdown(
         #         assignment=assignment,
         #         report_path=report_path,
         #         options=self.configuration.options))
 
-        diagnose(assignment, report_path)
+        print(diagnose(assignment, report_path), end="")
