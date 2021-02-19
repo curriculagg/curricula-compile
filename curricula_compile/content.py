@@ -210,7 +210,7 @@ class DirectoryAggregator(DirectoryShouldRun):
             problem_contents_path = problem.path.joinpath(self.contents_relative_path)
             if problem_contents_path.exists():
                 problem_destination_path = self.destination_path.joinpath(directory_name(problem))
-                files.copy_directory(problem_contents_path, problem_destination_path)
+                files.copy_directory(problem_contents_path, problem_destination_path, merge=True)
                 copied_paths.append(problem_destination_path)
 
         return copied_paths
