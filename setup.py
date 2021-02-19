@@ -9,13 +9,13 @@ with root.joinpath("README.md").open() as fh:
     long_description = fh.read()
 
 name = "curricula_compile"
-spec = importlib.util.spec_from_file_location(name, str(root.joinpath(name, "__init__.py")))
+spec = importlib.util.spec_from_file_location(name, str(root.joinpath(name, "version.py")))
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 
 setup(
     name="curricula-compile",
-    version=module.__version__,
+    version=module.version,
     description="An assignment bundler for the Curricula ecosystem",
     url="https://github.com/curriculagg/curricula",
     author="Noah Kim",
@@ -33,4 +33,4 @@ setup(
     package_data={"curricula_compile": ["schema/*.json", "template/**/*.md", "template/**/*.html"]},
     include_package_data=True,
     zip_safe=False,
-    install_requires=["jinja2", "jsonschema", f"curricula=={module.__version__}"])
+    install_requires=["jinja2", "jsonschema", f"curricula=={module.version}"])

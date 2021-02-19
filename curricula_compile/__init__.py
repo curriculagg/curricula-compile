@@ -5,8 +5,6 @@ from curricula.log import log
 
 from .compilation import CurriculaTarget, Configuration
 
-__version__ = "2.0.0"
-
 
 @timed("compile", printer=log.info)
 def compile(assignment_path: Path, artifacts_path: Path, custom_template_path: Path = None, options: dict = None):
