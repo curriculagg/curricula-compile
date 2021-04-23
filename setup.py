@@ -33,4 +33,4 @@ setup(
     package_data={"curricula_compile": ["schema/*.json", "template/**/*.md", "template/**/*.html"]},
     include_package_data=True,
     zip_safe=False,
-    install_requires=["jinja2", "jsonschema", "watchdog", f"curricula=={module.version}"])
+    install_requires=["jinja2", "jsonschema", "watchdog", f"curricula~={module.version}"])
